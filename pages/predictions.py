@@ -12,8 +12,8 @@ import pandas as pd
 from app import app
 pipeline = load('assets/mypipeline.joblib')
 all_options = {
-            0 : ['Domestic Shorthair Mix', 'Domestic Longhair Mix', 'Manx Mix', 'Siamese Mix', 'Pit Bull Mix'],
-            1 : ['Border Collie Mix', 'Boxer Mix', 'Chihuahua Shorthair Mix', 'Labrador Retriever Mix']
+            0 : ['Domestic Shorthair Mix', 'Domestic Longhair Mix', 'Manx Mix', 'Siamese Mix'],
+            1 : ['Border Collie Mix', 'Boxer Mix', 'Chihuahua Shorthair Mix', 'Labrador Retriever Mix', 'Pit Bull Mix']
         }
 breed_vals = {
             'Australian Cattle Dog Mix': 20,
