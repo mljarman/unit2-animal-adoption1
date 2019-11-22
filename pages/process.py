@@ -24,9 +24,13 @@ column1 = dbc.Col(
         simply dropping those observations or imputing with the mean.
 
         After cleaning up the data I tried both a Random Forest Classifier and a Logistic Regression model
-        since this is a classification problem (will an animal be adopted, or not) but ended up going with the Random Forest
-        Classifier as it produced slightly better results. I used the Majority Class as my baseline which was that 55% of animals 
-        would be adopted given no additional features. I performed a 3 way train, validate, and test split based on years the data 
+        since this is a binary classification problem (will an animal be adopted, or not) but ended up going with the Random Forest
+        Classifier as it produced slightly better results. Also, in this case there comes power in numbers and this particular model
+        uses many different "trees" that have individual outcomes but when grouped together outperform most other models. The only downside
+        may be that it works best with features that do have some predictive power so it's not just making wild guesses.
+        
+        I used the Majority Class as my baseline which was that 55% of animals would be adopted given no additional features. For my scoring metric, I decided to use accuracy since the classes weren't
+        imbalanced. I performed a 3 way train, validate, and test split based on years the data 
         was recorded and beat the baseline with an validation accuracy score of 85%. I also ran a Randomized Search CV for hyperparameter 
         optimization and this was my final simple, yet effective, pipeline:
 
