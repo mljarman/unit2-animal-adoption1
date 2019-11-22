@@ -24,16 +24,31 @@ column1 = dbc.Col(
         simply dropping those observations or imputing with the mean.
 
         After cleaning up the data I tried both a Random Forest Classifier and a Logistic Regression model
-        since this is a classification problem (will an animal be adopted, or not). I used the Majority Class
-        as my baseline which was that 55% of animals would be adopted given no additional features.
+        since this is a classification problem (will an animal be adopted, or not) but ended up going with the Random Forest
+        Classifier as it produced slightly better results. I used the Majority Class as my baseline which was that 55% of animals 
+        would be adopted given no additional features. I performed a 3 way train, validate, and test split based on years the data 
+        was recorded and beat the baseline with an validation accuracy score of 85%. I also ran a Randomized Search CV for hyperparameter 
+        optimization and this was my final simple, yet effective, pipeline:
 
-        I performed a 3 way split based on years the data was collected and beat the baseline with my 
-        validation set with an accuracy score of 85% with the Random Forest Classifier using a pipeline
-        that included ordinal encoding since the majority of my features are categorical.
+        ```
+        {
+        mypipeline = make_pipeline(
+            ce.OrdinalEncoder(), 
+            RandomForestClassifier(n_estimators=479, max_depth=5, 
+                               max_features=0.12718863383484313, random_state=42, 
+                               n_jobs=-1)
+        )
+        # Fit on train, score on val
+        mypipeline.fit(X_train, y_train)
+        print('Validation Accuracy', thepipeline.score(X_test, y_test))
+        }
+        ```
 
-        Below are the permutation importances are the features. Initially I thought the features would be
-        somewhat equally distributed, however, as mentioned in the Insights page, the most important
-        feature in making these predictions is whether or not an animal is fixed.
+        An ordinal encoder was used since the majority of my features are categorical. 
+
+        I've also included several Partial Dependence Plots to demonstrate how a feature affects 
+        predictions of a machine learning model. 
+
         """
         ),
         # PDP plots visualization:
@@ -55,8 +70,9 @@ column1 = dbc.Col(
 
         dcc.Markdown(
         """
-        I've also included several Partial Dependence Plots to demonstrate how a feature affects 
-        predictions of a machine learning model. 
+        Below are the permutation importances are the features. Initially I thought the features would be
+        somewhat equally distributed, but as mentioned on the Insights page, the most important feature
+        in making these predictions is whether or not an animal is fixed.
         """
         ),
     # permutation importances visualization:

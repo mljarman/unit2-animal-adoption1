@@ -69,8 +69,8 @@ column1 = dbc.Col(
             may not have the highest probability of being adopted would increase their probability of finding a home.
             That information wasn't available on this dataset but I think the potential is very much there.
 
-            The biggest insight is of course that whenever possible, you should adopt!
-            Shameless plug, this is Crosby
+            The biggest insight is of course that whenever possible, you should adopt and here is my other shameless plug,
+            Crosby!
         """
     ),
     # shameless plug:
