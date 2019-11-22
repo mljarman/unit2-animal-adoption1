@@ -20,8 +20,9 @@ column1 = dbc.Col(
             many of them will be adopted, but a large number will not.
             This app will help to predict the probability a dog or cat will be adopted
             based on different traits gathered from data in the Austin, Texas area. 
+
             This app is purely for educational purposes but it would be interesting to see if shelters 
-            could use it given more testing with incoming animals to perhaps take actions to help
+            could use it given more testing with incoming animals to perhaps take promotional actions to help
             find certain animals their forever homes.
     
             """
@@ -31,7 +32,6 @@ column1 = dbc.Col(
     md=4,
     align='center'
 )
-
 
 column2 = dbc.Col([html.Img(src='assets/dogs.png', className='img-fluid')
 ],
