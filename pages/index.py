@@ -1,4 +1,3 @@
-# Imports from 3rd party libraries
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -16,29 +15,27 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Your Value Proposition
-
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
-
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
-
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
-
+            ## Will an animal be adopted?
+            Thousands of animals are brought to shelters every day across the country. Fortunately 
+            many of them will be adopted, but a large number will not.
+            This app will help to predict the probability a dog or cat will be adopted
+            based on different traits gathered from data in the Austin, Texas area. 
+            This app is purely for educational purposes but it would be interesting to see if shelters 
+            could use it given more testing with incoming animals to perhaps take actions to help
+            find certain animals their forever homes.
+    
             """
         ),
-        dcc.Link(dbc.Button('Your Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button('Predict Adoption', color='primary'), href='/predictions')
     ],
     md=4,
+    align='center'
 )
 
-gapminder = px.data.gapminder()
-fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
 
-column2 = dbc.Col(
-    [
-        dcc.Graph(figure=fig),
-    ]
+column2 = dbc.Col([html.Img(src='assets/dogs.png', className='img-fluid')
+],
+align='center'
 )
 
 layout = dbc.Row([column1, column2])
