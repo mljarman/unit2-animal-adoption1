@@ -193,7 +193,7 @@ def predict(animal_type, gender, fixed_Fixed, age, color, breed, season_arrived)
     [Input('animal_type', 'value')],
 )
 def change_image(animal_type):
-    if animal_type == 'Dog':
+    if animal_type == 1:
         return html.Img(src='assets/dog.png', className='img-flud', style={'height': '400px'})
     else:
         return html.Img(src='assets/cat.png', className='img-flud', style={'height': '400px'})
