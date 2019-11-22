@@ -11,6 +11,23 @@ import pandas as pd
 # Imports from this application
 from app import app
 pipeline = load('assets/mypipeline.joblib')
+all_options = {
+            0 : ['Domestic Shorthair Mix', 'Domestic Longhair Mix', 'Manx Mix', 'Siamese Mix', 'Pit Bull Mix'],
+            1 : ['Border Collie Mix', 'Boxer Mix', 'Chihuahua Shorthair Mix', 'Labrador Retriever Mix']
+        }
+breed_vals = {
+            'Australian Cattle Dog Mix': 20,
+            'Border Collie Mix': 17,
+            'Boxer Mix': 22,
+            'Chihuahua Shorthair Mix': 5,
+            'Domestic Shorthair Mix': 76,
+            'Domestic Longhair Mix': 78,
+            'Labrador Retriever Mix': 8,
+            'Manx Mix': 84,
+            'Pit Bull Mix': 21,
+            'Siamese Mix': 81,
+}
+
 
 
 # 2 column layout. 1st column width = 4/12
@@ -108,18 +125,18 @@ column1 = dbc.Col(
        dcc.Markdown('##### Breed'), 
         dcc.Dropdown(
             id='breed', 
-            options= [
-                {'label': 'Australian Cattle Dog Mix', 'value': 20},
-                {'label': 'Border Collie Mix', 'value': 17},
-                {'label': 'Boxer Mix', 'value': 22},
-                {'label': 'Chihuahua Shorthair Mix', 'value': 5},
-                {'label': 'Domestic Shorthair Mix', 'value': 76},
-                {'label': 'Domestic Longhair Mix', 'value': 78},
-                {'label': 'Labrador Retriever Mix', 'value': 8},
-                {'label': 'Manx Mix', 'value': 84},
-                {'label': 'Pit Bull Mix', 'value': 21},
-                {'label': 'Siamese Mix', 'value': 81},
-            ],
+            # options= [
+            #     {'label': 'Australian Cattle Dog Mix', 'value': 20},
+            #     {'label': 'Border Collie Mix', 'value': 17},
+            #     {'label': 'Boxer Mix', 'value': 22},
+            #     {'label': 'Chihuahua Shorthair Mix', 'value': 5},
+            #     {'label': 'Domestic Shorthair Mix', 'value': 76},
+            #     {'label': 'Domestic Longhair Mix', 'value': 78},
+            #     {'label': 'Labrador Retriever Mix', 'value': 8},
+            #     {'label': 'Manx Mix', 'value': 84},
+            #     {'label': 'Pit Bull Mix', 'value': 21},
+            #     {'label': 'Siamese Mix', 'value': 81},
+            # ],
             className = 'mb-3',
             value=1,
             placeholder='Select a breed'
@@ -197,3 +214,14 @@ def change_image(animal_type):
         return html.Img(src='assets/dog.png', className='img-flud', style={'height': '400px'})
     else:
         return html.Img(src='assets/cat.png', className='img-flud', style={'height': '400px'})
+
+@app.callback(
+    [Output('breed', 'options')],
+    [Input('animal_type', 'value')]
+)
+#This method generates a list of options for the breed selection dropdown
+#It selects the animal from the all_options dict, then makes an option
+#for each of the breeds in the list.
+def gen_options(animal_type):
+    opts = [{'label': i, 'value' : breed_vals[i]} for i in all_options[animal_type]]
+    return [opts]
